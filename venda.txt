@@ -1,0 +1,4 @@
+banana|5|Frutas|caio|marcos|3|16/05/2023
+banana|5|Frutas|caio|marcos|3|16/05/2023
+banana|5|Frutas|caio|marcos|3|16/05/2023
+banana|5|Frutas|caio|marcos|3|16/05/2023
