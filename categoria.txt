@@ -1,1 +1,3 @@
-Frios
+Frutas
+Carnes
+Legumes
