@@ -1,6 +1,6 @@
 from model import *
 
-class CategoriaDal:
+class DaoCategoria:
     @classmethod
     def salvar(cls, categoria : Categoria):
         with open('categoria.txt', 'a') as arq:
