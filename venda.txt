@@ -2,3 +2,4 @@ banana|5|Frutas|caio|marcos|3|16/05/2023
 banana|5|Frutas|caio|marcos|3|16/05/2023
 banana|5|Frutas|caio|marcos|3|16/05/2023
 banana|5|Frutas|caio|marcos|3|16/05/2023
+maça|5|Frutas|joão|Gustavo|2|31/05/2023

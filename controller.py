@@ -126,5 +126,44 @@ class ControllerEstoque:
                       f"Preço: {i.produto.preco}\n"
                       f"Categoria: {i.produto.categoria}\n"
                       f"Quantidade: {i.quantidade}\n")
-a = ControllerEstoque()
-a.mostrarEstoque()
+
+class ControllerVenda:
+    def cadastrarVenda(self, nomeProduto, vendedor, comprador, quantidadeVendida):
+        x = DaoEstoque.ler()
+        temp = []
+        existe = False
+        quantidade = False
+
+        for i in x:
+            if existe == False:
+                if i.produto.nome == nomeProduto:
+                    existe = True
+                    if i.quantidade >= quantidadeVendida:
+                        quantidade = True
+                        i.quantidade = int(i.quantidade) - int(quantidadeVendida)
+
+                        vendido = Venda(Produto(i.produto.nome, i.produto.preco, i.produto.categoria), vendedor, comprador, quantidadeVendida)
+                        valorCompra = int(quantidadeVendida) * int(i.produto.preco)
+                        DaoVenda.salvar(vendido)
+            temp.append([Produto(i.produto.nome, i.produto.preco, i.produto.categoria), i.quantidade])
+
+            arq = open('estoque.txt', 'w')
+            arq.write("")
+
+            for i in temp:
+                with open('estoque.txt', 'a') as arq:
+                    arq.writelines(i[0].nome + "|" + i[0].preco + "|"+ i[0].categoria + "|" + str(i[1]))
+                    arq.writelines('\n')
+
+            if existe == False:
+                print('O produto não existe')
+                return None
+            elif not quantidade:
+                print("A quantidade vendida não contém em estoque")
+                return None
+            else:
+                print('venda realizada com sucesso')
+                return valorCompra
+            
+a = ControllerVenda()
+a.cadastrarVenda("maça", "joão", "Gustavo", 2)
