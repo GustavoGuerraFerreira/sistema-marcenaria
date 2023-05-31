@@ -1,1 +1,2 @@
-maça|5|Frutas|18
+maï¿½a|5|Frutas|18
+Abacaxi|5|Frutas|14
