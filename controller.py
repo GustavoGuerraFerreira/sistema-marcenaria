@@ -25,11 +25,18 @@ class ControllerCategoria:
                     del x[i]
                     break
             print("Categoria removida com sucesso")
-        #TODO: COLOCAR SEM CATEGORIA NO ESTOQUE
             with open('categoria.txt', 'w') as arq:
                 for i in x:
                     arq.writelines(i.categoria)
                     arq.writelines('\n')
+        estoque = DaoEstoque.ler()
+
+        estoque = list(map(lambda x: Estoque(Produto(x.produto.nome, x.produto.preco, "Sem categoria"), x.quantidade) if(x.produto.categoria == categoriaRemover) else(x), estoque))
+        with open('estoque.txt', 'w') as arq:
+            for i in estoque:
+                arq.writelines(i.produto.nome + "|" + i.produto.preco + "|" + i.produto.categoria + "|" + str(i.quantidade))
+                arq.writelines("\n")
+            
 
     def alterarCategoria(self,categoriaAlterar, categoriaAlterada):
         x = DaoCategoria.ler()
@@ -39,6 +46,18 @@ class ControllerCategoria:
             cat1 = list(filter(lambda x: x.categoria == categoriaAlterada,x ))
             if len(cat1) == 0:
                 x = list(map(lambda x: Categoria(categoriaAlterada) if(x.categoria == categoriaAlterar) else(x), x  ))
+                print('A altereção foi efetuada com sucesso')
+
+                estoque = DaoEstoque.ler()
+
+                estoque = list(map(
+                    lambda x: Estoque(Produto(x.produto.nome, x.produto.preco, categoriaAlterada), x.quantidade) if (
+                                x.produto.categoria == categoriaAlterar) else (x), estoque))
+                with open('estoque.txt', 'w') as arq:
+                    for i in estoque:
+                        arq.writelines(i.produto.nome + "|" + i.produto.preco + "|" + i.produto.categoria + "|" + str(
+                            i.quantidade))
+                        arq.writelines("\n")
             else:
                 print("A categoria para qual deseja alterar já existe")
                 #TODO: ALTERA A CATEGORIA NO ESTOQUE
@@ -404,3 +423,6 @@ class ControllerFuncionario:
                   f"Endereço: {i.endereco}\n"
                   f"CPF: {i.cpf}\n"
                   f"CLT: {i.clt}\n")
+
+a = ControllerCategoria()
+a.removerCategoria("Frutas")

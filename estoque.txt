@@ -1,2 +1,2 @@
-ma�a|5|Frutas|18
-Abacaxi|5|Frutas|14
+ma�a|5|Sem categoria|18
+Abacaxi|5|Sem categoria|14
