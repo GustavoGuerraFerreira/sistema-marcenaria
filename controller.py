@@ -423,6 +423,3 @@ class ControllerFuncionario:
                   f"Endereço: {i.endereco}\n"
                   f"CPF: {i.cpf}\n"
                   f"CLT: {i.clt}\n")
-
-a = ControllerCategoria()
-a.removerCategoria("Frutas")
